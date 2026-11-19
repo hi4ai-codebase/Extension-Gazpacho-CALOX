@@ -1,0 +1,30 @@
+{
+     "manifest_version": 3,
+     "name": "Cierre CALOX - Gazpacho",
+      "version": "1.0.1",
+     "description": "Genera el Excel del cierre de CALOX desde Gazpacho (con el vendedor original de cada pedido), usando la sesión abierta del usuario.",
+     "icons": {
+          "16": "logo_gazpacho.png",
+          "48": "logo_gazpacho.png",
+          "128": "logo_gazpacho.png"
+     },
+     "content_scripts": [
+          {
+               "matches": ["https://gazpacho.netalizer.com/gazpachoNG/*"],
+               "js": ["puente.js"],
+               "run_at": "document_start"
+          },
+          {
+               "matches": ["https://gazpacho.netalizer.com/gazpachoNG/*"],
+               "js": ["lib/exceljs.bare.min.js", "lib/cierre-core.js", "cierre-calox.js"],
+               "world": "MAIN",
+               "run_at": "document_idle"
+          }
+     ],
+     "web_accessible_resources": [
+          {
+               "resources": ["logo_gazpacho.png"],
+               "matches": ["https://gazpacho.netalizer.com/*"]
+          }
+     ]
+}
